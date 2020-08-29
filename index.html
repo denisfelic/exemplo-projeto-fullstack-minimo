@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consuming API</title>
+</head>
+
+<body>
+    <h1>Consuming an API</h1>
+    <div id="main"></div>
+</body>
+
+<script>
+    getContent()
+
+    async function getContent() {
+        try {
+            const response = await fetch('http://localhost:3001/')
+            const data = await response.json()
+            
+            showUsers(data)
+        } catch (error) {
+            console.error(error, 'pipoca')
+        }
+    }
+
+    function showUsers(users) {
+        let output = '<ul>'
+        for (let user of users) {
+            output += `<li>${user.player}</li>`
+        }
+        document.querySelector('#main').innerHTML = output
+    }
+
+</script>
+
+</html>
